@@ -1,4 +1,4 @@
-cmake-modules
+CMake Modules
 =============
 
 My collection of CMake modules
