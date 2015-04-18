@@ -30,20 +30,21 @@ function(add_compiler_flag FLAG)
     message(FATAL_ERROR "Unknown language: ${FLAG}")
   endif()
 
-  set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS}" "${COMPILER_FLAG_ALL}")
+  set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS} ${COMPILER_FLAG_ALL}")
 
-  if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     # using Clang
-    set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS}" "${COMPILER_FLAG_CLANG}")
+    set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS} ${COMPILER_FLAG_CLANG}")
   elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     # using GCC
-    set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS}" "${COMPILER_FLAG_GCC}")
+    message("HELLO")
+    set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS} ${COMPILER_FLAG_GCC}")
   elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Intel")
     # using Intel C++
-    set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS}" "${COMPILER_FLAG_INTEL}")
+    set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS} ${COMPILER_FLAG_INTEL}")
   elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     # using Visual Studio C++
-    set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS}" "${COMPILER_FLAG_MSVC}")
+    set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS} ${COMPILER_FLAG_MSVC}")
   endif()
 
   # Make our flags a space separated list.
