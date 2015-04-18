@@ -37,7 +37,6 @@ function(add_compiler_flag FLAG)
     set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS} ${COMPILER_FLAG_CLANG}")
   elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     # using GCC
-    message("HELLO")
     set(CMAKE_${LANG}_FLAGS "${CMAKE_${LANG}_FLAGS} ${COMPILER_FLAG_GCC}")
   elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Intel")
     # using Intel C++
