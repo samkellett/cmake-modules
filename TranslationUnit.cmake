@@ -62,7 +62,6 @@ macro(translation_unit)
       "${TRANSLATION_UNIT_DEPENDS}"
       "${TRANSLATION_UNIT_TEST_DEPENDS}"
     )
-    string(REPLACE ";" " " TEST_SOURCES "${TEST_SOURCES}")
 
     add_executable("${TEST_NAME}" "${TEST_SOURCES}")
     target_link_libraries("${TEST_NAME}" "${TRANSLATION_UNIT_TEST_LIBRARIES}")
