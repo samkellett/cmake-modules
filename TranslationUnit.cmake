@@ -37,7 +37,7 @@ macro(translation_unit)
     TRANSLATION_UNIT
     "" # Nullary arguments (flags).
     "FILE;TEST" # Unary arguments.
-    "DEPENDS;TEST_DEPENDS;TEST_LIBRARIES;TEST_INCLUDE_DIRS" # n-ary arguments.
+    "DEPENDS;LIBRARIES;TEST_DEPENDS;TEST_LIBRARIES;TEST_INCLUDE_DIRS" # n-ary arguments.
     ${ARGN}
   )
 
@@ -61,13 +61,17 @@ macro(translation_unit)
     list(APPEND TEST_SOURCES "${TRANSLATION_UNIT_DEPENDS}")
     list(APPEND TEST_SOURCES "${TRANSLATION_UNIT_TEST_DEPENDS}")
 
+	list(APPEND TEST_LIBRARIES "${TRANSLATION_UNIT_LIBRARIES}")
+	list(APPEND TEST_LIBRARIES "${TRANSLATION_UNIT_TEST_LIBRARIES}")
+
     add_executable("${TEST_NAME}" ${TEST_SOURCES})
-    target_link_libraries("${TEST_NAME}" "${TRANSLATION_UNIT_TEST_LIBRARIES}")
+    target_link_libraries("${TEST_NAME}" ${TEST_LIBRARIES})
 
     add_test(NAME "${TEST_NAME}" COMMAND "${TEST_NAME}")
 
     # Unset all new variables...
     unset(TEST_NAME)
+    unset(TEST_LIBRARIES)
     unset(TEST_SOURCES)
   endif()
 
