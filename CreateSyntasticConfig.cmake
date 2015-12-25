@@ -12,7 +12,10 @@ function(create_syntastic_config)
     file(APPEND "${CONFIG_FILE}" "-I${DIRECTORY}\n")
   endforeach()
 
-  foreach(FLAG IN LISTS CMAKE_CXX_FLAGS)
+  set(FLAGS ${CMAKE_CXX_FLAGS})
+  separate_arguments(FLAGS)
+
+  foreach(FLAG IN LISTS FLAGS)
     file(APPEND "${CONFIG_FILE}" "${FLAG}\n")
   endforeach()
 endfunction()
